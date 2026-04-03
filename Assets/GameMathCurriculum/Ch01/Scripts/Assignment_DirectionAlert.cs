@@ -76,7 +76,9 @@ public class Assignment_DirectionAlert : MonoBehaviour
     private Direction GetDirection(Transform enemy)
     {
         var toTarget = enemy.position - transform.position;
-        if (toTarget.magnitude > alertRange) return Direction.None;
+        toTarget.y = 0f;
+
+        if (toTarget == Vector3.zero) return Direction.None;
 
         toTarget.Normalize();
         var threshold = Mathf.Cos(45 * Mathf.Deg2Rad);
