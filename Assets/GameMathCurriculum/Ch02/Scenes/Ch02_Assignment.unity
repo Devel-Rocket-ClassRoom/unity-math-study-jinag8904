@@ -315,8 +315,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4785065972056683248, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 365737711}
   m_SourcePrefab: {fileID: 100100000, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
+--- !u!1 &365737710 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4785065972056683248, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
+  m_PrefabInstance: {fileID: 365737709}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &365737711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365737710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87784a66b090c814fabc82361e9112b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assignment_BulletHell
+  bulletPrefab: {fileID: 0}
+  bulletCount: 16
+  bulletSpeed: 10
+  fireInterval: 0.5
+  patternType: 0
+  spiralTurnSpeed: 2
+  fanAngle: 120
+  debugUI: {fileID: 964295918}
+  fireTimer: 0
 --- !u!1 &546480631
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,8 +803,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5798730304960302702, guid: 110c7b8d39da47e44af9b55f7e86a906, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 889989355}
   m_SourcePrefab: {fileID: 100100000, guid: 110c7b8d39da47e44af9b55f7e86a906, type: 3}
+--- !u!1 &889989354 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5798730304960302702, guid: 110c7b8d39da47e44af9b55f7e86a906, type: 3}
+  m_PrefabInstance: {fileID: 889989353}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &889989355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889989354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e0ea94f0fa52240b3245575db77ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assignment_LissajousCurve
+  amplitudeX: 2
+  amplitudeZ: 2
+  frequencyX: 1
+  frequencyZ: 2
+  phaseX: 0
+  phaseZ: 0
+  trailLength: 50
+  debugUI: {fileID: 1352208600}
+  initialPosition: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &964295916
 GameObject:
   m_ObjectHideFlags: 0
