@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class Assignment_BulletHell : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class Assignment_BulletHell : MonoBehaviour
     [SerializeField] private PatternType patternType = PatternType.Circle;
 
     [Header("=== 나선형 패턴 파라미터 ===")]
-    [Tooltip("나선형 회전 속도 (라디안/초)")] [Range(0.5f, 5f)]
+    [Tooltip("나선형 회전 속도 (라디안/초)")] [Range(0.5f, 50f)]
     [SerializeField] private float spiralTurnSpeed = 2f;
 
     [Header("=== 부채꼴 패턴 파라미터 ===")]
@@ -45,11 +46,13 @@ public class Assignment_BulletHell : MonoBehaviour
     private void Start()
     {
         fireTimer = 0f;
+        currentRotationOffset = 0f;
     }
 
     private void Update()
     {
         fireTimer -= Time.deltaTime;
+        currentRotationOffset = spiralTurnSpeed * Time.time;
 
         if (fireTimer <= 0f)
         {
@@ -87,7 +90,7 @@ public class Assignment_BulletHell : MonoBehaviour
         }
     }
 
-    private Vector3 CalculateCircleDirection(int index, int total)
+    private Vector3 CalculateCircleDirection(int index, int total)  // 완
     {
         // TODO
         float angleDegree = index * (360 / total);
@@ -99,18 +102,21 @@ public class Assignment_BulletHell : MonoBehaviour
     private Vector3 CalculateSpiralDirection(int index, int total)
     {
         // TODO
-        
+        if (index != 0) return Vector3.zero;
 
-        return Vector3.forward;
+        float angleDegree = currentRotationOffset;
+        float angleRadian = angleDegree * Mathf.Deg2Rad;
+
+        return new Vector3(Mathf.Cos(angleRadian), 0f, Mathf.Sin(angleRadian)).normalized;
     }
 
     private Vector3 CalculateFanDirection(int index, int total)
     {
         // TODO
-        float angleDegree = index * (fanAngle / total);
+        float angleDegree = index * (fanAngle / total) - fanAngle /2;
         float angleRadian = angleDegree * Mathf.Deg2Rad;
 
-        return new Vector3(Mathf.Cos(angleRadian), 0f, Mathf.Sin(angleRadian)).normalized;
+        return new Vector3(Mathf.Sin(angleRadian), 0f, Mathf.Cos(angleRadian)).normalized;
     }
     
     private void UpdateDebugUI()

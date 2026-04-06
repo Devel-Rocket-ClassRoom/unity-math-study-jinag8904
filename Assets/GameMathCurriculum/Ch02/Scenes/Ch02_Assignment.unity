@@ -265,13 +265,37 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 964295918}
     - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
+      propertyPath: fanAngle
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
+      propertyPath: bulletCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
+      propertyPath: bulletSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
       propertyPath: patternType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 5460869111871097844, guid: 4079fb5d6db8a9946808bdeae599fb5c, type: 3}
+    - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
+      propertyPath: fireInterval
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592315350122844830, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
+      propertyPath: spiralTurnSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1740885042269419993, guid: 8add092940f04e142a97aa71624fbce8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5
@@ -735,6 +759,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LissajousMover
       objectReference: {fileID: 0}
+    - target: {fileID: 5798730304960302702, guid: 110c7b8d39da47e44af9b55f7e86a906, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8276809769565372670, guid: 110c7b8d39da47e44af9b55f7e86a906, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -778,38 +806,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5798730304960302702, guid: 110c7b8d39da47e44af9b55f7e86a906, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 889989355}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 110c7b8d39da47e44af9b55f7e86a906, type: 3}
---- !u!1 &889989354 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5798730304960302702, guid: 110c7b8d39da47e44af9b55f7e86a906, type: 3}
-  m_PrefabInstance: {fileID: 889989353}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &889989355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889989354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e0ea94f0fa52240b3245575db77ca8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assignment_LissajousCurve
-  amplitudeX: 2
-  amplitudeZ: 2
-  frequencyX: 1
-  frequencyZ: 2
-  phaseX: 0
-  phaseZ: 0
-  trailLength: 50
-  debugUI: {fileID: 1352208600}
-  initialPosition: {x: 0, y: 0, z: 0}
-  currentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &964295916
 GameObject:
   m_ObjectHideFlags: 0
