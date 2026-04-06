@@ -9,6 +9,8 @@ using TMPro;
 
 public class Assignment_BulletHell : MonoBehaviour
 {
+
+
     public enum PatternType
     {
         Circle,
@@ -38,6 +40,7 @@ public class Assignment_BulletHell : MonoBehaviour
     [Header("=== 디버그 정보 (읽기 전용) ===")]
     [SerializeField] private TextMeshProUGUI debugUI;
     [SerializeField] private float fireTimer = 0f;
+    [SerializeField] private float currentRotationOffset;
 
     private void Start()
     {
@@ -87,19 +90,27 @@ public class Assignment_BulletHell : MonoBehaviour
     private Vector3 CalculateCircleDirection(int index, int total)
     {
         // TODO
-        return Vector3.forward;
+        float angleDegree = index * (360 / total);
+        float angleRadian = angleDegree * Mathf.Deg2Rad;
+
+        return new Vector3(Mathf.Cos(angleRadian), 0f, Mathf.Sin(angleRadian)).normalized;
     }
 
     private Vector3 CalculateSpiralDirection(int index, int total)
     {
         // TODO
+        
+
         return Vector3.forward;
     }
 
     private Vector3 CalculateFanDirection(int index, int total)
     {
         // TODO
-        return Vector3.forward;
+        float angleDegree = index * (fanAngle / total);
+        float angleRadian = angleDegree * Mathf.Deg2Rad;
+
+        return new Vector3(Mathf.Cos(angleRadian), 0f, Mathf.Sin(angleRadian)).normalized;
     }
     
     private void UpdateDebugUI()
