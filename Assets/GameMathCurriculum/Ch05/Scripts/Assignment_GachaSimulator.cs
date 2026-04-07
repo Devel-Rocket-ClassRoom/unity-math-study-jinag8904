@@ -78,13 +78,10 @@ public class Assignment_GachaSimulator : MonoBehaviour
 
     private void PerformHardPityPulls()
     {
-        while (currentPityCount != hardPity)
-        {
-            ExecutePull();
-        }
+        while (!ExecutePull()) { }
     }
 
-    private void ExecutePull()
+    private bool ExecutePull()
     {
         // TODO       
         //**목표:** 소프트/하드 천장 메커니즘이 적용된 뽑기 시스템 구현
@@ -97,38 +94,45 @@ public class Assignment_GachaSimulator : MonoBehaviour
         //5. 키 입력: Space(1회 뽑기), R(10연차), T(천장까지 뽑기)
         //6. UI에 총 뽑기 수, SSR 획득 수, 현재 천장 진행도, 유효 확률, 뽑기 기록을 표시한다
 
-        totalPulls++;
-
-        float randValue = Random.Range(0f, 1f);
-
-        if (randValue <= currentEffectiveRate)   // 쓰알 뽑힘
+        if (currentPityCount < softPityStart)
         {
-            pullHistory.Add(true);
-            ssrPityList.Add(currentPityCount);
-            currentPityCount = 0;
             currentEffectiveRate = baseRate;
+        }
+
+        else if (currentPityCount < hardPity - 1)
+        {
+            currentEffectiveRate = 
+                baseRate + 
+                (currentPityCount - softPityStart + 1) * ((1f - baseRate) / (hardPity - softPityStart));
+        }
+
+        else
+        {
+            currentEffectiveRate = 1f;
+        }
+
+        bool isSSR = Random.value < currentEffectiveRate;
+
+        if (isSSR)
+        {
+            ssrPityList.Add(currentPityCount +1);
+            currentPityCount = 0;
             totalSSRs++;
         }
 
-        else // 안뽑힘
+        else
         {
-            pullHistory.Add(false);
             currentPityCount++;
-
-            if (currentPityCount == hardPity)
-            {
-                currentEffectiveRate = 1;
-            }
-
-            else if (currentPityCount >= softPityStart)
-            {
-                currentEffectiveRate += (1 - baseRate) / (hardPity - softPityStart);
-            }
         }
+
+        totalPulls++;
+        pullHistory.Add(isSSR);
 
         if (pullHistory.Count > MAX_HISTORY) pullHistory.RemoveAt(0);
 
         UpdateUI();
+
+        return isSSR;
     }
 
     private void UpdateUI()

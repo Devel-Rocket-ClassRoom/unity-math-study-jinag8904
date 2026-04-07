@@ -94,7 +94,7 @@ public class Assignment_DropTable : MonoBehaviour
         {
             cumulative += items[index].weight;
 
-            if (randValue <= cumulative)
+            if (randValue < cumulative)
             {
                 lastSelectedIndex = index;
                 break;
