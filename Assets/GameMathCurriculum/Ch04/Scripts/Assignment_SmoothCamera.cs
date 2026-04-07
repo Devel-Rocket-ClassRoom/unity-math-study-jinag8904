@@ -76,21 +76,21 @@ public class Assignment_SmoothCamera : MonoBehaviour
         if (target == null) return;
 
         // TODO
-
         // 1. 마우스 휠 입력으로 줌 거리를 조절하고 min/ max 범위로 클램프
-        zoom += Input.GetAxis("Mouse ScrollWheel");
-        zoom = Mathf.Clamp(zoom, minZoomDistance, maxZoomDistance);
+        zoom = Input.GetAxis("Mouse ScrollWheel");
+        targetZoomDistance += zoom * zoomSpeed;
+        targetZoomDistance = Mathf.Clamp(targetZoomDistance, minZoomDistance, maxZoomDistance);
 
         // 2. Mathf.SmoothDamp로 현재 줌 거리를 목표 줌 거리에 부드럽게 수렴
-        currentZoomDistance = Mathf.SmoothDamp(currentZoomDistance, targetZoomDistance, ref zoomSpeed, zoomSmoothTime);
+        currentZoomDistance = Mathf.SmoothDamp(currentZoomDistance, targetZoomDistance, ref zoomVelocity, zoomSmoothTime);
 
         // 3. 타겟 위치 + offset 방향 × 줌 거리로 카메라 목표 위치 계산
         // 4. Vector3.SmoothDamp로 카메라 위치를 부드럽게 이동
-        var targetPos = target.position + offset * zoom;
+        var targetPos = target.position + offset.normalized * currentZoomDistance + Vector3.up * offset.y;
         transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref positionVelocity, positionSmoothTime);
 
         // 5. Quaternion.Slerp로 카메라 회전을 목표 방향에 부드럽게 보간
-        var targetRot = Quaternion.LookRotation(target.position - transform.position);
+        var targetRot = Quaternion.LookRotation((target.position - transform.position).normalized);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSmoothSpeed);
 
         UpdateUI();
