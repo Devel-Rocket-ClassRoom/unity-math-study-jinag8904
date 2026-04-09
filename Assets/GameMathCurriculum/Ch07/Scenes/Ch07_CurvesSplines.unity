@@ -197,7 +197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &40191379
 Transform:
   m_ObjectHideFlags: 0
@@ -1093,7 +1093,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &953074644
 Transform:
   m_ObjectHideFlags: 0
@@ -2583,7 +2583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[0].value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[1].value
@@ -2611,7 +2611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[1].inSlope
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[2].inSlope
@@ -2643,7 +2643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[1].outSlope
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[2].inWeight
@@ -2715,11 +2715,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[0].tangentMode
-      value: 34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[1].tangentMode
-      value: 34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2041040197625500462, guid: 3c748a888c0e7d74dbb54d475cafca6b, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[2].tangentMode

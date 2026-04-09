@@ -49,12 +49,6 @@ public class Assignment_SplineConveyor : MonoBehaviour
             boxes[i].position = EvaluateSpline(waypoints, t * speedCurve.Evaluate(t));
         }
 
-        //foreach (var box in boxes)
-        //{
-        //    t = globalT / boxes.Length;
-        //    box.position = EvaluateSpline(waypoints, t);
-        //}
-
         UpdateUI();
     }
 
