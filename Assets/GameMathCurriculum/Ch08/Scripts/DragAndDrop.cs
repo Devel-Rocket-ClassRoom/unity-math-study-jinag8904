@@ -3,9 +3,8 @@ using UnityEngine;
 public class DragAndDrop : MonoBehaviour
 {
     private Camera cam;
-    private GameObject selectedObject;
+    private Ball selectedObject;
 
-    public Terrain terrain;
     public Vector3 currentPos;
 
     void Awake()
@@ -22,17 +21,20 @@ public class DragAndDrop : MonoBehaviour
             // 들고 있을 때
             if (selectedObject != null)
             {
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                var rayCastHits = Physics.RaycastAll(ray);  // 닿은 애들 전부 저장
+
+                foreach (var hit in rayCastHits)
                 {
                     if (hit.collider.CompareTag("DropZone"))
                     {
                         OnDropZone();
+                        break;
                     }
 
                     else if (hit.collider.CompareTag("Ground"))
-
                     {
                         OnGround();
+                        break;
                     }
                 }
             }
@@ -40,12 +42,14 @@ public class DragAndDrop : MonoBehaviour
             // 안 들고 있을 때
             else
             {
-                // Selectable 위인지 아닌지
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                var rayCastHits = Physics.RaycastAll(ray);  // 닿은 애들 전부 저장
+
+                foreach (var hit in rayCastHits)
                 {
                     if (hit.collider.CompareTag("Selectable"))
                     {
-                        selectedObject = hit.collider.gameObject;
+                        selectedObject = hit.collider.gameObject.GetComponent<Ball>();
+                        break;
                     }
                 }
             }
@@ -73,12 +77,14 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnDropZone()
     {
-        selectedObject.transform.position = new Vector3(currentPos.x, currentPos.y + 10f, currentPos.z); ;
+        Debug.Log("OnDropZone() 실행");
+        selectedObject.transform.position = new Vector3(currentPos.x, currentPos.y + 10f, currentPos.z);
         selectedObject = null;
-    }
+    } 
 
     private void OnGround()
     {
+        Debug.Log("OnGround() 실행");
         selectedObject = null;
     }
 }
