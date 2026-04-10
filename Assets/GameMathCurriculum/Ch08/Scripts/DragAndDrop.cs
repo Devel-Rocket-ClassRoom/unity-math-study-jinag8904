@@ -3,9 +3,15 @@ using UnityEngine;
 public class DragAndDrop : MonoBehaviour
 {
     private Camera cam;
-    private Ball selectedObject;
+    public LayerMask ground;
+    public LayerMask ball;
+    public LayerMask dropZone;
 
+    private bool isDraging = false;
+
+    private Ball dragingObj;
     public Vector3 currentPos;
+
 
     void Awake()
     {
@@ -15,76 +21,43 @@ public class DragAndDrop : MonoBehaviour
     void Update()
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        
-        if (Input.GetMouseButtonDown(0))    // 좌클릭
+
+        if (Input.GetMouseButtonDown(0))
         {
-            // 들고 있을 때
-            if (selectedObject != null)
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ball))
             {
-                var rayCastHits = Physics.RaycastAll(ray);  // 닿은 애들 전부 저장
-
-                foreach (var hit in rayCastHits)
-                {
-                    if (hit.collider.CompareTag("DropZone"))
-                    {
-                        OnDropZone();
-                        break;
-                    }
-
-                    else if (hit.collider.CompareTag("Ground"))
-                    {
-                        OnGround();
-                        break;
-                    }
-                }
-            }
-
-            // 안 들고 있을 때
-            else
-            {
-                var rayCastHits = Physics.RaycastAll(ray);  // 닿은 애들 전부 저장
-
-                foreach (var hit in rayCastHits)
-                {
-                    if (hit.collider.CompareTag("Selectable"))
-                    {
-                        selectedObject = hit.collider.gameObject.GetComponent<Ball>();
-                        break;
-                    }
-                }
+                Debug.Log("Drag Start");
+                isDraging = true;
+                dragingObj = hit.collider.GetComponent<Ball>();
+                dragingObj.DragStart();
             }
         }
-        else
-        {
-            // 들고 있을 때, 오브젝트 움직이기
-            if (selectedObject != null)
-            {
-                var rayCastHits = Physics.RaycastAll(ray);  // 닿은 애들 전부 저장
 
-                foreach (var hit in rayCastHits)
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if (isDraging)
+            {
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, dropZone))
                 {
-                    if (hit.collider.CompareTag("Ground"))
-                    {
-                        currentPos = new Vector3(hit.point.x, hit.point.y + 12.5f, hit.point.z);
-                        break;
-                    }
+                    dragingObj.DragEnd();
                 }
 
-                selectedObject.transform.position = currentPos;
+                else
+                {
+                    dragingObj.Return();
+                }
+
+                isDraging = false;
+                dragingObj = null;
             }
         }
-    }
 
-    private void OnDropZone()
-    {
-        Debug.Log("OnDropZone() 실행");
-        selectedObject.transform.position = new Vector3(currentPos.x, currentPos.y + 10f, currentPos.z);
-        selectedObject = null;
-    } 
-
-    private void OnGround()
-    {
-        Debug.Log("OnGround() 실행");
-        selectedObject = null;
+        else if (isDraging)
+        {
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, ground))
+            {
+                dragingObj.transform.position = hit.point;
+            }
+        }
     }
 }
