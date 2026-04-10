@@ -246,6 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   state: 1
+  terrain: {fileID: 0}
 --- !u!195 &281631110
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1009,7 +1010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465fb1880499094459c1aa93bcc83758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  terrain: {fileID: 632658077}
   currentPos: {x: 0, y: 0, z: 0}
 --- !u!1 &2024621346
 GameObject:
